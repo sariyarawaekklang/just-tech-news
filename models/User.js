@@ -3,7 +3,12 @@ const sequelize = require('../config/connection');
 const bcrypt = require('bcrypt');
 
 // create our User model; User will inherit all functionality of the Model class 
-class User extends Model {}
+class User extends Model {
+    // set up method to take plaintext password retrieved from the client request at req.body.email and compares that with the hased password
+    checkPassword(loginPw) {
+        return bcrypt.compareSync(loginPw, this.password);
+    }
+}
 
 // define table columns and configuration
 User.init(

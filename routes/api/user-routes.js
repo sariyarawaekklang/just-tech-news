@@ -49,6 +49,29 @@ router.post('/', (req, res) => {
     });
 });
 
+// finds user by email
+router.post('/login', (req, res) => {
+    User.findOne({
+        where: {
+            email: req.body.email
+        }
+    }).then(dbUserData => {
+        if (!dbUserData) {
+            res.status(400).json({ message: 'No user with that email address!' });
+            return;
+        }
+
+        const validPassword = dbUserData.checkPassword(req.body.password);
+        if (!validPassword) {
+            res.status(400).json({ message: 'Incorrect password!' });
+            return;
+        }
+
+        res.json({ user: dbUserData, message: 'You are now logged in!' });
+    });
+
+});
+
 router.put('/:id', (req, res) => {
     // if req.body has exact key/value pairs to match the model, you can just use `req.body` instead
     User.update(req.body, {
