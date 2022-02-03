@@ -1,5 +1,3 @@
-const { response } = require("express");
-
 // this function is an ES6 feature helps make our Promises more readable
 // for login
 async function loginFormHandler(event) {
@@ -55,4 +53,5 @@ async function signupFormHandler(event) {
 }
 
 document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
+
 document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
