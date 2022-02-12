@@ -1,5 +1,3 @@
-// this function is an ES6 feature helps make our Promises more readable
-// for login
 async function loginFormHandler(event) {
   event.preventDefault();
 
@@ -17,14 +15,13 @@ async function loginFormHandler(event) {
     });
 
     if (response.ok) {
-      document.location.replace('/');
+      document.location.replace('/dashboard/');
     } else {
       alert(response.statusText);
     }
   }
 }
 
-// for sign up
 async function signupFormHandler(event) {
   event.preventDefault();
 
@@ -43,9 +40,8 @@ async function signupFormHandler(event) {
       headers: { 'Content-Type': 'application/json' }
     });
 
-    // check the response status
     if (response.ok) {
-      document.location.replace('/');
+      document.location.replace('/dashboard/');
     } else {
       alert(response.statusText);
     }
